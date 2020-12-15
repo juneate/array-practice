@@ -20,6 +20,8 @@ shift() // remove from first item
 
 
 let printAllStudents = function(table) {
+  // Clear the ordered list
+
   // Inline define the function annonymously
   table.forEach((student) => {
     // Create a li to hold each student record
@@ -34,6 +36,7 @@ let printAllStudents = function(table) {
 printAllStudents(allStudent)
 
 // Filter to print only students at risk of failing
+
 // Toggle between all students and "at risk" students with a button
 
 
