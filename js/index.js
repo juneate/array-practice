@@ -7,7 +7,8 @@ let allStudents = [
 // console.table(students)
 
 let records = document.getElementById(`records`) // <ol>
-let results = document.getElementById(`results`)
+let results = document.getElementById(`results`) // <footer>
+let atRisk = document.getElementById(`atRisk`)   // <input type="checkbox">
 
 /*
 // ADD/REMOVE FROM AN ARRAY
@@ -37,42 +38,25 @@ let printStudentTable = function(table) {
   results.textContent = `Displaying records for ${table.length} students`
 }
 
-// Print all students
-printStudentTable(allStudents)
-
-
-
 
 // Filter to print only students at risk of failing
+let filterForAtRiskStudents = function(event) {
 
-// Iterates over each record, accumulating matching records into an Array in memory, then returns the array when complete
-let atRiskStudents = allStudents.filter((student) => student.grade < 60)
-printStudentTable(atRiskStudents)
+  if (event.target.checked) {
+    // Iterates over each record, accumulating matching records into an Array in memory, then returns the array when complete
+    let atRiskStudents = allStudents.filter((student) => student.grade < 60)
+    printStudentTable(atRiskStudents)
+  } else {
+    printStudentTable(allStudents)
+  }
+
+}
+
 
 
 
 // Toggle between all students and "at risk" students with a button
+atRisk.addEventListener(`change`, filterForAtRiskStudents)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* let searchForTom1 = function(drum) {
-  return drum.eleId === `kick`
-}
-
-// Search an array for an element
-let whatWasFound = sounds.find(drum => drum.eleId === `kick`)
-console.log(whatWasFound)
- */
+// Print all students to start
+printStudentTable(allStudents)
