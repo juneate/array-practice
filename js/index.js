@@ -1,4 +1,4 @@
-let allStudent = [
+let allStudents = [
   {name: `Tim Berners-Lee`, grade: 80},
   {name: `Ada Lovelace`, grade: 83},
   {name: `Grace Hopper`, grade: 72},
@@ -7,7 +7,7 @@ let allStudent = [
 // console.table(students)
 
 let records = document.getElementById(`records`) // <ol>
-
+let results = document.getElementById(`results`)
 
 /*
 // ADD/REMOVE FROM AN ARRAY
@@ -19,11 +19,13 @@ shift() // remove from first item
 */
 
 
-let printAllStudents = function(table) {
+let printStudentTable = function(table) {
   // Clear the ordered list
+  records.innerHTML = ``  // This is a non-elegant way to clear a list
 
   // Inline define the function annonymously
   table.forEach((student) => {
+    
     // Create a li to hold each student record
     let listItem = document.createElement(`li`)  // <li></li>
     listItem.textContent = `${student.name}: ${student.grade}%`
@@ -31,11 +33,23 @@ let printAllStudents = function(table) {
 
     records.append(listItem)
   })
+
+  results.textContent = `Displaying records for ${table.length} students`
 }
 
-printAllStudents(allStudent)
+// Print all students
+printStudentTable(allStudents)
+
+
+
 
 // Filter to print only students at risk of failing
+
+// Iterates over each record, accumulating matching records into an Array in memory, then returns the array when complete
+let atRiskStudents = allStudents.filter((student) => student.grade < 60)
+printStudentTable(atRiskStudents)
+
+
 
 // Toggle between all students and "at risk" students with a button
 
